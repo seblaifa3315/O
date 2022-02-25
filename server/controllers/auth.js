@@ -36,3 +36,32 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
         throw new error("Invalid user data");
     }
 });
+
+exports.loginUser = asyncHandler(async (req, res, next) => {
+    const { email, password } = req.body;
+    console.log(req.body);
+
+    const user = await User.findOne({ email });
+
+    if (user && user.matchPassword(password)) {
+
+        res.status(200).json({
+            success: {
+                user: {
+                    id: user._id,
+                    name: user.name,
+                    email: user.email
+                },
+            }
+        });
+    } else {
+        res.status(401);
+        throw new Error("Invalid email or password");
+    }
+})
+
+exports.logoutUser = asyncHandler(async (req, res, next) => {
+    res.clearCookie("token");
+  
+    res.send("You have successfully logged out");
+  });
