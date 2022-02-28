@@ -3,9 +3,11 @@ import { Grid } from "@mui/material";
 import LoginForm from "./LoginForm/LoginForm";
 import useStyles from "./useStyles";
 import login from '../../helpers/APICalls/login';
+import { useAuth } from '../../context/useAuthContext';
 
 export default function SignUp() {
     const classes = useStyles();
+    const { updateLoginContext } = useAuth();
 
     const handleSubmit = (
         { email, password }: { email: string; password: string },
@@ -16,7 +18,7 @@ export default function SignUp() {
                 console.error({ error: data.error.message });
                 setSubmitting(false);
               } else if (data.success) {
-                console.log(data.success);
+                updateLoginContext(data.success);
               } else {
                 // should not get here from backend but this catch is for an unknown issue
                 console.error({ data });

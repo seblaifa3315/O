@@ -1,4 +1,5 @@
 import { makeStyles } from "@mui/styles";
+import zebra from '../../images/background/zebra.jpeg';
 
 const useStyles = makeStyles(() => ({
     container: {
@@ -7,7 +8,7 @@ const useStyles = makeStyles(() => ({
         top: "0",
     },
     image: {
-        backgroundImage: `url(https://variety.com/wp-content/uploads/2017/01/1-1.png)`,
+        backgroundImage: `url(${zebra})`,
         backgroundPosition: "center",
         backgroundRepeat: "no-Repeat",
         backgroundSize: "cover",

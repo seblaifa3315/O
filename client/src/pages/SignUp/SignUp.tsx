@@ -3,9 +3,11 @@ import { Grid } from "@mui/material";
 import SignUpForm from "./SignUpForm/SignUpForm";
 import useStyles from "./useStyles";
 import register from '../../helpers/APICalls/register';
+import { useAuth } from '../../context/useAuthContext';
 
 export default function SignUp() {
     const classes = useStyles();
+    const { updateLoginContext } = useAuth();
 
     const handleSubmit = ({ name, email, password }: { email: string; password: string; name: string }, { setSubmitting }: FormikHelpers<{ email: string; password: string; name: string }>) => {
         register(name, email, password).then((data) => {
@@ -13,7 +15,7 @@ export default function SignUp() {
                 console.error({ error: data.error.message });
                 setSubmitting(false);
               } else if (data.success) {
-                console.log(data.success);
+                updateLoginContext(data.success);
               } else {
                 // should not get here from backend but this catch is for an unknown issue
                 console.error({ data });

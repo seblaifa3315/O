@@ -3,7 +3,7 @@ import { User } from './User';
 export interface AuthApiDataSuccess {
   message: string;
   user: User;
-  profile: any;
+  profile?: any;
   token: string;
 }
 

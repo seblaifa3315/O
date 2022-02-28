@@ -1,7 +1,8 @@
 import { Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
-import { TextField, Button, Grid, Typography } from "@mui/material";
+import { TextField, Button, Grid, Typography, CircularProgress } from "@mui/material";
 import useStyles from "./useStyles";
+import { Link } from 'react-router-dom';
 
 interface Props {
     handleSubmit: (
@@ -69,9 +70,19 @@ export default function SignUpForm({ handleSubmit }: Props): JSX.Element {
                             />
                         </Grid>
                         <Grid item xs={12} spacing={3}>
-                            <Button variant="contained" fullWidth type="submit" sx={{ height: 50 }}>
-                                Submit
+                        <Button type="submit" variant="contained" color="primary" fullWidth disableElevation sx={{ height: 40 }}>
+                                {isSubmitting ? <CircularProgress style={{ color: "white" }} /> : "Sign Up"}
                             </Button>
+                        </Grid>
+                        <Grid item xs={12} sx={{ display: 'flex',  justifyContent: 'center'}}>
+                            <Typography textAlign="center" variant="body1">
+                                Already a member?
+                            </Typography>
+                            <Link to="/login" className = "link">
+                            <Typography textAlign="center" variant="body1" sx={{ fontWeight: 'bold', color: '#214fc6', marginLeft: '5px'}}>
+                                Login
+                            </Typography>
+                            </Link>
                         </Grid>
                     </Grid>
                 </form>

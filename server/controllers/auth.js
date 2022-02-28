@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const Profile = require("../models/Profile");
 const asyncHandler = require("express-async-handler");
+const generateToken = require("../utils/generateToken");
 
 exports.registerUser = asyncHandler(async (req, res, next) => {
     const { name, email, password } = req.body;
@@ -22,6 +23,14 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
     if (user) {
         await Profile.create({ userId: user._id, name });
 
+        const token = generateToken(user._id);
+        const secondsInWeek = 604800;
+
+        res.cookie("token", token, {
+            httpOnly: true,
+            maxAge: secondsInWeek * 1000,
+        });
+
         res.status(201).json({
             success: {
                 user: {
@@ -39,11 +48,17 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
 
 exports.loginUser = asyncHandler(async (req, res, next) => {
     const { email, password } = req.body;
-    console.log(req.body);
 
     const user = await User.findOne({ email });
 
     if (user && user.matchPassword(password)) {
+        const token = generateToken(user._id);
+        const secondsInWeek = 604800;
+
+        res.cookie("token", token, {
+            httpOnly: true,
+            maxAge: secondsInWeek * 1000,
+        })
 
         res.status(200).json({
             success: {
@@ -59,6 +74,27 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
         throw new Error("Invalid email or password");
     }
 })
+
+exports.loadUser = asyncHandler(async (req, res, next) => {
+    const user = await User.findById(req.user.id);
+    const profile = await Profile.findOne({ userId: req.user.id });
+
+    if (!user) {
+        res.status(401);
+        throw new Error("Not authorized");
+    }
+
+    res.status(200).json({
+        success: {
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+            },
+            profile,
+        },
+    });
+});
 
 exports.logoutUser = asyncHandler(async (req, res, next) => {
     res.clearCookie("token");
