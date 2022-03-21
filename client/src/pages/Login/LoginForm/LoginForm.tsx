@@ -2,22 +2,22 @@ import { Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { TextField, Button, Grid, Typography, CircularProgress } from "@mui/material";
 import useStyles from "./useStyles";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 interface Props {
     handleSubmit: (
         {
-            email,
+            username,
             password,
         }: {
-            email: string;
+            username: string;
             password: string;
         },
         {
             setStatus,
             setSubmitting,
         }: FormikHelpers<{
-            email: string;
+            username: string;
             password: string;
         }>
     ) => void;
@@ -28,11 +28,11 @@ export default function LoginForm({ handleSubmit }: Props): JSX.Element {
     return (
         <Formik
             initialValues={{
-                email: "",
+                username: "",
                 password: "",
             }}
             validationSchema={Yup.object().shape({
-                email: Yup.string().required("Email is required").email("Email is not valid"),
+                username: Yup.string().required("Email is required"),
                 password: Yup.string().required("Password is required").max(100, "Password is too long").min(6, "Password too short"),
             })}
             onSubmit={handleSubmit}
@@ -40,15 +40,15 @@ export default function LoginForm({ handleSubmit }: Props): JSX.Element {
             {({ handleSubmit, handleChange, values, touched, errors, isSubmitting }) => (
                 <form onSubmit={handleSubmit}>
                     <Grid container spacing={3}>
-                        <Grid item xs={12} spacing={3}>
+                        <Grid item xs={12}>
                             <Typography textAlign="center" variant="h4">
                                 Log in
                             </Typography>
                         </Grid>
-                        <Grid item xs={12} spacing={3}>
-                            <TextField fullWidth id="email" name="email" label="Email address" placeholder="Your email" autoComplete="email" value={values.email} onChange={handleChange} error={touched.email && Boolean(errors.email)} helperText={touched.email ? errors.email : ""} />
+                        <Grid item xs={12}>
+                            <TextField fullWidth id="username" name="username" label="Username" placeholder="Username" autoComplete="username" value={values.username} onChange={handleChange} error={touched.username && Boolean(errors.username)} helperText={touched.username ? errors.username : ""} />
                         </Grid>
-                        <Grid item xs={12} spacing={3}>
+                        <Grid item xs={12}>
                             <TextField
                                 fullWidth
                                 id="password"
@@ -68,14 +68,14 @@ export default function LoginForm({ handleSubmit }: Props): JSX.Element {
                                 {isSubmitting ? <CircularProgress style={{ color: "white" }} /> : "Login"}
                             </Button>
                         </Grid>
-                        <Grid item xs={12} sx={{ display: 'flex',  justifyContent: 'center'}}>
+                        <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
                             <Typography textAlign="center" variant="body1">
-                                Not a member?
+                                Forgot your password?
                             </Typography>
-                            <Link to="/signup" className = "link">
-                            <Typography textAlign="center" variant="body1" sx={{ fontWeight: 'bold', color: '#214fc6', marginLeft: '5px'}}>
-                                Sign up
-                            </Typography>
+                            <Link to="#" className="link">
+                                <Typography textAlign="center" variant="body1" sx={{ fontWeight: "bold", color: "#214fc6", marginLeft: "5px" }}>
+                                    click here
+                                </Typography>
                             </Link>
                         </Grid>
                     </Grid>

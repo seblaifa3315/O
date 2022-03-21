@@ -7,11 +7,13 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { AuthProvider } from "./context/useAuthContext";
 
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import AdminRoute from "./components/AdminRoute/AdminRoute";
 import Navbar from "./components/Navbar/Navbar";
-import Dashboard from "./pages/Dashboard/Dashboard";
-import NotFound from "./pages/NotFound/NotFound";
-import SignUp from "./pages/SignUp/SignUp";
+import Divers from "./pages/Divers/Divers";
+import Analytics from "./pages/Analytics/Analytics";
 import Login from "./pages/Login/Login";
+import Admin from "./pages/Admin/AdminTest/Admin";
+import RegisterDiver from './pages/Admin/RegisterDiver/RegisterDiver';
 
 function App(): JSX.Element {
     return (
@@ -20,14 +22,19 @@ function App(): JSX.Element {
                 <AuthProvider>
                     <CssBaseline />
                     <Navbar />
-                    <Routes>
+                    <Divers />
+                    {/* <Routes>
                         <Route path="/login" element={<Login />} />
-                        <Route path="/signup" element={<SignUp />} />
                         <Route element={<ProtectedRoute />}>
-                            <Route path="/dashboard" element={<Dashboard />} />
+                            <Route path="/divers" element={<Divers />} />
+                            <Route path="/analytics" element={<Analytics />} />
+                        </Route>
+                        <Route element={<AdminRoute />}>
+                            <Route path="/admin" element={<Admin />} />
+                            <Route path="/register" element={<RegisterDiver />} />
                         </Route>
                         <Route path="*" element={<Navigate to="/login" />} />
-                    </Routes>
+                    </Routes> */}
                 </AuthProvider>
             </BrowserRouter>
         </ThemeProvider>

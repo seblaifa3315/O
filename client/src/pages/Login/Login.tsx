@@ -10,10 +10,10 @@ export default function SignUp() {
     const { updateLoginContext } = useAuth();
 
     const handleSubmit = (
-        { email, password }: { email: string; password: string },
-        { setSubmitting }: FormikHelpers<{ email: string; password: string }>,
+        { username, password }: { username: string; password: string },
+        { setSubmitting }: FormikHelpers<{ username: string; password: string }>,
       ) => {
-        login(email, password).then((data) => {
+        login(username, password).then((data) => {
             if (data.error) {
                 console.error({ error: data.error.message });
                 setSubmitting(false);

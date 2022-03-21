@@ -33,8 +33,8 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
         (data: AuthApiDataSuccess) => {
             setLoggedInUser(data.user);
             setProfile(data.profile);
-            if (data.user && (location.pathname === "/login" || location.pathname === "/signup")) {
-                navigate("/dashboard");
+            if (data.user && (location.pathname === "/login")) {
+                navigate("/divers");
             }
         },
         [navigate]

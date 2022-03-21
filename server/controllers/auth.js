@@ -1,43 +1,34 @@
 const User = require("../models/User");
 const Profile = require("../models/Profile");
+const Diver = require("../models/Diver");
 const asyncHandler = require("express-async-handler");
 const generateToken = require("../utils/generateToken");
 
 exports.registerUser = asyncHandler(async (req, res, next) => {
-    const { name, email, password } = req.body;
+    const { firstName, lastName } = req.body;
+    const username= `${firstName[0].toLowerCase()}${lastName.toLowerCase()}`;
+    const password = `${firstName.toLowerCase()}${lastName.toLowerCase()}`;
 
-    const emailExists = await User.findOne({ email });
-    if(emailExists) {
-        res.status(400);
-        throw new Error("A user with that email already exists");
-    }
 
-    const userExists = await User.findOne({ name });
+    const userExists = await User.findOne({ username });
+    
     if(userExists) {
         res.status(400);
         throw new Error("A user with that username already exists");
     }
 
-    const user = await User.create({ name, email, password });
+    const user = await User.create({ firstName, lastName, username, password });
 
     if (user) {
-        await Profile.create({ userId: user._id, name });
-
-        const token = generateToken(user._id);
-        const secondsInWeek = 604800;
-
-        res.cookie("token", token, {
-            httpOnly: true,
-            maxAge: secondsInWeek * 1000,
-        });
+        await Profile.create({ userId: user._id, firstName, lastName });
+        await Diver.create({ userId: user._id, firstName, lastName })
 
         res.status(201).json({
             success: {
                 user: {
-                    id: user._id,
-                    name: user.name,
-                    email: user.email
-                }
+                    DiverFirstName: user.firstName,
+                    DiverLastName: user.lastName,
+                },
             }
         });
     } else {
@@ -47,11 +38,12 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
 });
 
 exports.loginUser = asyncHandler(async (req, res, next) => {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ username });
 
     if (user && user.matchPassword(password)) {
+        const profile = await Profile.findOne({ userId: user._id });
         const token = generateToken(user._id);
         const secondsInWeek = 604800;
 
@@ -64,9 +56,11 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
             success: {
                 user: {
                     id: user._id,
-                    name: user.name,
-                    email: user.email
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    isAdmin: user.isAdmin,
                 },
+                profile,
             }
         });
     } else {
@@ -88,8 +82,9 @@ exports.loadUser = asyncHandler(async (req, res, next) => {
         success: {
             user: {
                 id: user._id,
-                name: user.name,
-                email: user.email,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                isAdmin: user.isAdmin,
             },
             profile,
         },
