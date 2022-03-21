@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
                         <>
                             <Typography>Welcome {loggedInUser.firstName}</Typography>
                             <Avatar alt={loggedInUser.firstName} src="https://i.kym-cdn.com/photos/images/original/001/370/795/761.jpg" sx={{ width: 30, height: 30, marginLeft: 3 }} />
-                            
+
                             <IconButton size="large" aria-label="account profile picture" aria-controls="menu-navbar" arais-haspopup="true" onClick={handleMenuOpen} color="inherit">
                                 <ArrowDropDownIcon />
                             </IconButton>
