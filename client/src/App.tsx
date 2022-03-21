@@ -22,8 +22,7 @@ function App(): JSX.Element {
                 <AuthProvider>
                     <CssBaseline />
                     <Navbar />
-                    <Divers />
-                    {/* <Routes>
+                    <Routes>
                         <Route path="/login" element={<Login />} />
                         <Route element={<ProtectedRoute />}>
                             <Route path="/divers" element={<Divers />} />
@@ -34,7 +33,7 @@ function App(): JSX.Element {
                             <Route path="/register" element={<RegisterDiver />} />
                         </Route>
                         <Route path="*" element={<Navigate to="/login" />} />
-                    </Routes> */}
+                    </Routes>
                 </AuthProvider>
             </BrowserRouter>
         </ThemeProvider>
