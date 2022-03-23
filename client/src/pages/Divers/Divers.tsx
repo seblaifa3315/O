@@ -1,16 +1,15 @@
 import useStyles from "./useStyles";
-import { Grid, Button, Card, Typography, Box, Avatar, Stack } from "@mui/material";
+import { Grid, Button, Card, Typography, Box, Avatar, Stack, Paper } from "@mui/material";
 import { Link } from "react-router-dom";
 import PageContainer from "../../components/PageContainer/PageContainer";
 import { useAuth } from "../../context/useAuthContext";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import { string } from "yup/lib/locale";
 
 interface Diver {
-    firstName: String;
-    lastName: String;
-    status: String;
-    avatar: String;
+    firstName: string;
+    lastName: string;
+    status: string;
+    avatar: string;
 }
 
 const dummyData: Diver[] = [
@@ -70,25 +69,25 @@ const dummyData: Diver[] = [
     },
     {
         firstName: "Zach",
-        lastName: "???",
+        lastName: "Ristow",
         status: "technician",
         avatar: "https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_3.jpg",
     },
     {
         firstName: "Federico",
-        lastName: "???",
+        lastName: "Giussi",
         status: "technician",
         avatar: "https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_3.jpg",
     },
     {
         firstName: "Jenny",
-        lastName: "???",
+        lastName: "Sangster-Williams",
         status: "technician",
         avatar: "https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_3.jpg",
     },
     {
         firstName: "Sean",
-        lastName: "???",
+        lastName: "O'Hara",
         status: "technician",
         avatar: "https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_3.jpg",
     },
@@ -106,7 +105,7 @@ const dummyData: Diver[] = [
     },
     {
         firstName: "Omar",
-        lastName: "???",
+        lastName: "Robles",
         status: "technician",
         avatar: "https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_3.jpg",
     },
@@ -117,12 +116,35 @@ const dummyData: Diver[] = [
         avatar: "https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_3.jpg",
     },
     {
-        firstName: "Berg",
-        lastName: "???",
+        firstName: "David",
+        lastName: "Berg",
         status: "technician",
         avatar: "https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_3.jpg",
     },
 ];
+
+const DiverItem: React.FC<{
+    avatar: string;
+    firstName: string;
+    lastName: string;
+    status: string;
+}> = ({ avatar, firstName, lastName, status }) => {
+    const classes = useStyles();
+
+    return (
+        <Grid item xs={2}>            
+            <Stack pt={1} pb={1} alignItems="center" className={classes.diverItem}>
+                <Avatar src={avatar} alt={lastName} sx={{ height: 80, width: 80 }}   />
+                <Typography>
+                    {firstName} {lastName}
+                </Typography>
+                <Typography variant='caption' sx={{ color: '#cacaca' }}>
+                    {status}
+                </Typography>
+            </Stack>
+        </Grid>
+    );
+};
 
 export default function Divers() {
     const classes = useStyles();
@@ -135,37 +157,19 @@ export default function Divers() {
                     <Sidebar />
                 </Grid>
                 <Grid item xs={8} md={9}>
-                    <Box sx={{ background: "pink", minHeight: '100%' }} textAlign="center">
+                    <Box sx={{ height: "100%", display: "flex", flexFlow: "column" }} textAlign="center">
                         <Box>
                             <Typography variant="h3">Aquatics Team</Typography>
                         </Box>
-                        <Box>
-                            <Grid container>
-                                <Grid item xs={6}>
-                                    ola
-                                </Grid>
-                                <Grid item xs={6}>
-                                    ola
-                                </Grid>
+                        <Box sx={{ flexGrow: "1" }}>
+                            <Grid container justifyContent="center">
+                                {dummyData && dummyData.filter((diver) => diver.status === "supervisor").map((diver) => <DiverItem key={diver.lastName} avatar={diver.avatar} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} />)}
+                            </Grid>
+                            <Grid container justifyContent="center">
+                                {dummyData && dummyData.filter((diver) => diver.status === "lead").map((diver) => <DiverItem key={diver.lastName} avatar={diver.avatar} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} />)}
                             </Grid>
                             <Grid container>
-                                <Grid item xs={6}>
-                                    ola
-                                </Grid>
-                                <Grid item xs={6}>
-                                    ola
-                                </Grid>
-                            </Grid>
-                            <Grid container>
-                                <Grid item xs={2}>
-                                    ola
-                                </Grid>
-                                <Grid item xs={2}>
-                                    ola
-                                </Grid>
-                                <Grid item xs={2}>
-                                    ola
-                                </Grid>
+                                {dummyData && dummyData.filter((diver) => diver.status === "technician").map((diver) => <DiverItem key={diver.lastName} avatar={diver.avatar} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} />)}
                             </Grid>
                         </Box>
                     </Box>
