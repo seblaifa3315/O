@@ -31,13 +31,17 @@ const Navbar: React.FC = () => {
     };
 
     return (
-        <Box className={location.pathname === "/login" || location.pathname === "/signup" ? classes.transparentNavbar : classes.navbarContainer}>
+        <Box className={location.pathname === "/login" ? classes.transparentNavbar : classes.navbarContainer}>
             <AppBar position="static" color={loggedInUser ? "primary" : "transparent"} elevation={0} sx={{ minHeight: "8vh" }}>
                 <Toolbar>
+                    <NavLink to={loggedInUser? "/divers" : "/login"} className={classes.link}>
                     <PoolIcon className={classes.logo} />
                     <Typography sx={{ flexGrow: 1 }} variant="body1" className={classes.logo}>
                         Aquatics
                     </Typography>
+                    </NavLink>
+                    
+                    
                     {loggedInUser && (
                         <>
                             <Typography>Welcome {loggedInUser.firstName}</Typography>

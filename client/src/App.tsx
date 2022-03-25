@@ -14,6 +14,7 @@ import Analytics from "./pages/Analytics/Analytics";
 import Login from "./pages/Login/Login";
 import Admin from "./pages/Admin/AdminTest/Admin";
 import RegisterDiver from './pages/Admin/RegisterDiver/RegisterDiver';
+import DiverDetails from "./pages/DiverDetails/DiverDetails";
 
 function App(): JSX.Element {
     return (
@@ -26,6 +27,7 @@ function App(): JSX.Element {
                         <Route path="/login" element={<Login />} />
                         <Route element={<ProtectedRoute />}>
                             <Route path="/divers" element={<Divers />} />
+                            <Route path="/diver-details" element={<DiverDetails />} />
                             <Route path="/analytics" element={<Analytics />} />
                         </Route>
                         <Route element={<AdminRoute />}>

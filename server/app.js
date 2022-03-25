@@ -8,6 +8,7 @@ const { join } = require("path");
 const dotenv = require("dotenv");
 
 const authRouter = require("./routes/auth");
+const diverRouter = require("./routes/diver");
 
 dotenv.config();
 const { json, urlencoded } = express;
@@ -22,5 +23,6 @@ app.use(cookieParser());
 app.use(express.static(join(__dirname, "public")));
 
 app.use("/auth", authRouter);
+app.use("/diver", diverRouter);
 
 module.exports = { app, server };

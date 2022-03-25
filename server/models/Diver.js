@@ -17,10 +17,6 @@ const diverSchema = new mongoose.Schema(
             required: true,
             default: "",
         },
-        photo: {
-            type: String,
-            default: "",
-        },
         status: {
             type: String,
             enum: ["supervisor", "lead", "technician"],
@@ -28,6 +24,9 @@ const diverSchema = new mongoose.Schema(
         shift: {
             type: String,
             enum: ["day", "night"],
+        },
+        hiringDate: {
+            type: Date,
         },
     },
     {

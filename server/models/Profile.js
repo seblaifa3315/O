@@ -19,7 +19,7 @@ const profileSchema = new mongoose.Schema(
     },
     photo: {
       type: String,
-      default: "",
+      default: "https://www.freevector.com/uploads/vector/preview/25719/Diver_Vector_6.jpg",
     },
   },
   {

@@ -5,7 +5,7 @@ const asyncHandler = require("express-async-handler");
 const generateToken = require("../utils/generateToken");
 
 exports.registerUser = asyncHandler(async (req, res, next) => {
-    const { firstName, lastName } = req.body;
+    const { firstName, lastName, status, isAdmin, shift, hiringDate } = req.body;
     const username= `${firstName[0].toLowerCase()}${lastName.toLowerCase()}`;
     const password = `${firstName.toLowerCase()}${lastName.toLowerCase()}`;
 
@@ -17,17 +17,21 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
         throw new Error("A user with that username already exists");
     }
 
-    const user = await User.create({ firstName, lastName, username, password });
+    const user = await User.create({ firstName, lastName, username, password, isAdmin});
 
     if (user) {
-        await Profile.create({ userId: user._id, firstName, lastName });
-        await Diver.create({ userId: user._id, firstName, lastName })
+        const profile = await Profile.create({ userId: user._id, firstName, lastName });
+        const diver = await Diver.create({ userId: user._id, firstName, lastName, status, shift, hiringDate })
 
         res.status(201).json({
             success: {
-                user: {
-                    DiverFirstName: user.firstName,
-                    DiverLastName: user.lastName,
+                divers: {
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    isAdmin: user.isAdmin,
+                    status: diver.status,
+                    shift: diver.shift,
+                    hiringDate: diver.hiringDate,
                 },
             }
         });

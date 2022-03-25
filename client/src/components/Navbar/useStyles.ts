@@ -18,14 +18,11 @@ const useStyles = makeStyles((theme: Theme) => ({
       color: '#FFF',
     }
   },
-  loginButton: {
-    width: "100px",
-    '&:hover': {
-      color: theme.palette.primary.main,
-    },
-  },
-  signupButton: {
-    width: "100px",
+  link: {
+    display: 'flex',
+    flexGrow: 1,
+    textDecoration: 'none',
+    color: 'inherit',
   },
   logout: {
     color: "#fff",
