@@ -6,4 +6,5 @@ export interface DiversApiData {
     status: string;
     shift: string;
     photo: string;
+    userId: string;
 }

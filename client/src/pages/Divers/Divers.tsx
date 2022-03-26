@@ -14,6 +14,7 @@ interface Diver {
     lastName: string;
     status: string;
     avatar: string;
+    diverId: string;
 }
 
 const DiverItem: React.FC<{
@@ -21,12 +22,13 @@ const DiverItem: React.FC<{
     firstName: string;
     lastName: string;
     status: string;
-}> = ({ avatar, firstName, lastName, status }) => {
+    diverId: string;
+}> = ({ avatar, firstName, lastName, status, diverId }) => {
     const classes = useStyles();
     const navigate = useNavigate();
 
     const handleOnClick = () => {
-        navigate(`/diver-details`);
+        navigate(`/diver-details/${diverId}`);
     };
 
     return (
@@ -79,12 +81,12 @@ export default function Divers() {
                         </Box>
                         <Box sx={{ flexGrow: "1" }}>
                             <Grid container justifyContent="center">
-                                {divers && divers.filter((diver) => diver.status === "supervisor").map((diver) => <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} />)}
+                                {divers && divers.filter((diver) => diver.status === "supervisor").map((diver) => <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} diverId={diver.userId} />)}
                             </Grid>
                             <Grid container justifyContent="center">
-                                {divers && divers.filter((diver) => diver.status === "lead").map((diver) => <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} />)}
+                                {divers && divers.filter((diver) => diver.status === "lead").map((diver) => <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} diverId={diver.userId} />)}
                             </Grid>
-                            <Grid container>{divers && divers.filter((diver) => diver.status === "technician").map((diver) => <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} />)}</Grid>
+                            <Grid container>{divers && divers.filter((diver) => diver.status === "technician").map((diver) => <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} diverId={diver.userId} />)}</Grid>
                         </Box>
                     </Box>
                 </Grid>

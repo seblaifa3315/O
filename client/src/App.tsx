@@ -27,7 +27,7 @@ function App(): JSX.Element {
                         <Route path="/login" element={<Login />} />
                         <Route element={<ProtectedRoute />}>
                             <Route path="/divers" element={<Divers />} />
-                            <Route path="/diver-details" element={<DiverDetails />} />
+                            <Route path="/diver-details/:diverId" element={<DiverDetails />} />
                             <Route path="/analytics" element={<Analytics />} />
                         </Route>
                         <Route element={<AdminRoute />}>
