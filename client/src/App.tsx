@@ -8,12 +8,12 @@ import { AuthProvider } from "./context/useAuthContext";
 
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute/AdminRoute";
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/Navbar/NavBar";
 import Divers from "./pages/Divers/Divers";
 import Analytics from "./pages/Analytics/Analytics";
 import Login from "./pages/Login/Login";
 import Admin from "./pages/Admin/AdminTest/Admin";
-import RegisterDiver from './pages/Admin/RegisterDiver/RegisterDiver';
+import RegisterDiver from "./pages/Admin/RegisterDiver/RegisterDiver";
 import DiverDetails from "./pages/DiverDetails/DiverDetails";
 import UpdateProfile from "./pages/UpdateProfile/UpdateProfile";
 import UpdateDiver from "./pages/Admin/UpdateDiver/UpdateDiver";
