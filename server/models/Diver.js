@@ -18,7 +18,7 @@ const diverSchema = new mongoose.Schema(
             default: "",
         },
         status: {
-            type: String,
+        type: String,
             enum: ["supervisor", "lead", "technician"],
         },
         shift: {
@@ -28,6 +28,27 @@ const diverSchema = new mongoose.Schema(
         hiringDate: {
             type: Date,
         },
+        divingCert: {
+            type: [String],
+            default: ["Dive Master"],
+        },
+        gearCert: {
+            type: [String],
+            default: [],
+        },
+        medicalCert: {
+            type: [String],
+            default: [],
+        },
+        otherCert: {
+            type: [String],
+            default: [],
+        },
+        tracks: {
+            type: [String],
+            default: [],
+        },
+
     },
     {
         timestamps: true,

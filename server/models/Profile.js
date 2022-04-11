@@ -21,6 +21,38 @@ const profileSchema = new mongoose.Schema(
       type: String,
       default: "https://www.freevector.com/uploads/vector/preview/25719/Diver_Vector_6.jpg",
     },
+    coverPicture: {
+      type: String,
+      default: "https://img1.10bestmedia.com/Images/Photos/229823/p-home-bg_55_660x440_201404241116.jpg",
+    },
+    city : {
+      type: String,
+      default: "",
+    },
+    country: {
+      type: String,
+      default: "",
+    },
+    birthMonth: {
+      type: String,
+      default: "",
+    },
+    birthDay: {
+      type: String,
+      default: "",
+    },
+    birthYear: {
+      type: String,
+      default: "",
+    },
+    phone: {
+      type: String,
+      default: "",
+    },
+    email: {
+      type: String,
+      default: "",
+    },
   },
   {
     timestamps: true,

@@ -2,13 +2,6 @@ import { makeStyles } from "@mui/styles";
 import { Theme } from "@mui/material/styles";
 
 const useStyles = makeStyles((theme: Theme) => ({
-    theDiverWrapper: {
-        minHeight: 600,
-        margin: '0 auto',
-        marginBottom: 50,
-        backgroundColor: '#fff',
-        borderRadius: 2,
-      },
       diverInfoContainer: {
         margin: '0 15px',
       },
@@ -26,7 +19,14 @@ const useStyles = makeStyles((theme: Theme) => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        margin: '10px 0px 15px 0px',
+        margin: '10px 0px 0px 0px',
+      },
+      tracksResumeTitle: {
+        fontWeight: 'bold',
+      },
+      cardAction: {
+        display: 'flex',
+        justifyContent: "flex-end",
       },
 }));
 

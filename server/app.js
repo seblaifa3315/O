@@ -9,6 +9,7 @@ const dotenv = require("dotenv");
 
 const authRouter = require("./routes/auth");
 const diverRouter = require("./routes/diver");
+const profileRouter = require("./routes/profile");
 
 dotenv.config();
 const { json, urlencoded } = express;
@@ -24,5 +25,6 @@ app.use(express.static(join(__dirname, "public")));
 
 app.use("/auth", authRouter);
 app.use("/diver", diverRouter);
+app.use("/profile", profileRouter);
 
 module.exports = { app, server };

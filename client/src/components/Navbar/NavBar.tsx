@@ -9,9 +9,10 @@ import IconButton from "@mui/material/IconButton";
 import PoolIcon from "@mui/icons-material/Pool";
 import { Settings, Logout } from "@mui/icons-material";
 
+
 const Navbar: React.FC = () => {
     const classes = useStyles();
-    const { loggedInUser, logout } = useAuth();
+    const { loggedInUser, logout, profile } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -30,6 +31,7 @@ const Navbar: React.FC = () => {
         logout();
     };
 
+
     return (
         <Box className={location.pathname === "/login" ? classes.transparentNavbar : classes.navbarContainer}>
             <AppBar position="static" color={loggedInUser ? "primary" : "transparent"} elevation={0} sx={{ minHeight: "8vh" }}>
@@ -42,10 +44,10 @@ const Navbar: React.FC = () => {
                     </NavLink>
                     
                     
-                    {loggedInUser && (
+                    {(loggedInUser && profile) && (
                         <>
                             <Typography>Welcome {loggedInUser.firstName}</Typography>
-                            <Avatar alt={loggedInUser.firstName} src="https://i.kym-cdn.com/photos/images/original/001/370/795/761.jpg" sx={{ width: 30, height: 30, marginLeft: 3 }} />
+                            <Avatar alt={loggedInUser.firstName} src={profile.photo} sx={{ width: 30, height: 30, marginLeft: 3 }} />
 
                             <IconButton size="large" aria-label="account profile picture" aria-controls="menu-navbar" arais-haspopup="true" onClick={handleMenuOpen} color="inherit">
                                 <ArrowDropDownIcon />

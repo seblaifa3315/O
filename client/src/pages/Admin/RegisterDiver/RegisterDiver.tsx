@@ -26,10 +26,6 @@ export default function RegisterDiver() {
               }
         })
     };
-    // const handleSubmit = ({ firstName, lastName, status, shift, hiringDate, isAdmin }: { firstName: string; lastName: string; status: string; shift: string; hiringDate: Date; isAdmin: boolean }, { setSubmitting }: FormikHelpers<{ firstName: string; lastName: string; status: string; shift: string; hiringDate: Date; isAdmin: boolean }>) => {
-    //     alert(`${firstName}, ${lastName}, ${status}, ${shift}, ${hiringDate}, ${isAdmin}`);
-    //     setSubmitting(false);
-    // };
 
 
     return (

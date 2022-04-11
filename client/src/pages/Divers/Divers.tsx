@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useStyles from "./useStyles";
 
-import { Grid, Button, Card, Typography, Box, Avatar, Stack, Paper } from "@mui/material";
+import { Grid, Button, Card, Typography, Box, Avatar, Stack, Paper, Divider } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import PageContainer from "../../components/PageContainer/PageContainer";
 import { useAuth } from "../../context/useAuthContext";
@@ -33,7 +33,7 @@ const DiverItem: React.FC<{
 
     return (
         <Grid item xs={6} md={4} lg={2}>
-            <Stack pt={1} pb={1} alignItems="center" className={classes.diverItem} onClick={handleOnClick}>
+            <Stack pt={1} pb={1} alignItems="center" onClick={handleOnClick} sx={{ cursor: 'pointer'}}>
                 <Avatar src={avatar} alt={lastName} sx={{ height: 80, width: 80 }} />
                 <Typography>
                     {firstName} {lastName}
@@ -66,26 +66,28 @@ export default function Divers() {
         loadDivers();
     }, []);
 
-    console.log(divers);
 
     return (
         <PageContainer>
             <Grid container sx={{ height: "92vh" }}>
-                <Grid item xs={4} md={3}>
+                <Grid item xs={2} lg={1}>
                     <Sidebar />
                 </Grid>
-                <Grid item xs={8} md={9}>
+                <Grid container item xs={10} lg={11} sx={{ height: "100%", overflow:'scroll' }}>
                     <Box sx={{ height: "100%", display: "flex", flexFlow: "column" }} textAlign="center">
                         <Box pt={2} pb={2}>
                             <Typography variant="h3">Aquatics Team</Typography>
                         </Box>
                         <Box sx={{ flexGrow: "1" }}>
+                        
                             <Grid container justifyContent="center">
                                 {divers && divers.filter((diver) => diver.status === "supervisor").map((diver) => <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} diverId={diver.userId} />)}
                             </Grid>
+                            
                             <Grid container justifyContent="center">
                                 {divers && divers.filter((diver) => diver.status === "lead").map((diver) => <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} diverId={diver.userId} />)}
                             </Grid>
+                            
                             <Grid container>{divers && divers.filter((diver) => diver.status === "technician").map((diver) => <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} diverId={diver.userId} />)}</Grid>
                         </Box>
                     </Box>
