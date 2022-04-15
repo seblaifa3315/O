@@ -100,3 +100,24 @@ exports.logoutUser = asyncHandler(async (req, res, next) => {
   
     res.send("You have successfully logged out");
   });
+
+  exports.deleteUserDiverProfile = asyncHandler(async (req, res, next) => {
+      try {
+        // const userExists = await User.findOne({ _id: req.user.id });
+        // if (!userExists) return res.status(404).json({ message: "User doesn't exist" });
+        // if (!userExists.isAdmin) return res. status(404).json({ message: "You are not authorized to execute this action. You need to be an administrator." });
+        
+        const { diverId } = req.body;
+        console.log("diverId");
+        console.log(diverId)
+
+        await User.deleteOne({ _id: diverId });
+        await Profile.deleteOne({ userId: diverId });
+        await Diver.deleteOne({ userId: diverId });
+
+        return res.status(200).json("You successfully delete the diver");
+
+      } catch (error) {
+        res.status(500).json({ message: error.message });
+      }
+  })

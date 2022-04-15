@@ -1,6 +1,8 @@
 const Profile = require("../models/Profile");
 const User = require("../models/User");
 const asyncHandler = require("express-async-handler");
+const multer = require('multer');
+
 
 exports.updateProfile = asyncHandler(async (req, res, next) => {
     try {
@@ -8,6 +10,7 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
         if (!userExists) return res.status(404).json({ message: "User doesn't exist" });
 
         const { city, country, month, day, year, phone, email } = req.body;
+        
 
         const theProfile = await Profile.findOne({ userId: req.user.id });
         theProfile.city = city;

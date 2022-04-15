@@ -46,7 +46,6 @@ exports.loadTheDiver = asyncHandler(async (req, res, next) => {
         theDiver.email = theDiverProfile.email;
         theDiver.isAdmin = theDiverUser.isAdmin;
 
-        console.log(theDiver);
         return res.status(200).json(theDiver);
     } catch (error) {
         res.status(500).json({ message: error.message });
