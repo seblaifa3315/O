@@ -5,6 +5,7 @@ import useStyles from "./useStyles";
 import register from '../../../helpers/APICalls/register';
 import { useAuth } from '../../../context/useAuthContext';
 import { useNavigate, useLocation } from "react-router-dom";
+import PageContainer from "../../../components/PageContainer/PageContainer";
 
 export default function RegisterDiver() {
     const classes = useStyles();
@@ -27,10 +28,13 @@ export default function RegisterDiver() {
     };
 
     return (
+        <PageContainer>
+
         <Grid container className={classes.container}>
-            <Grid item xs={12} order={{ xs: 2, md: 1 }} className={classes.form}>
+            <Grid item xs={8} md={9} className={classes.form}>
                 <RegisterDiverForm handleSubmit={handleSubmit} />
             </Grid>
         </Grid>
+        </PageContainer>
     );
 }

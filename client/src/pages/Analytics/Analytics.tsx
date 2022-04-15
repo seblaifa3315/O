@@ -1,5 +1,5 @@
 import useStyles from "./useStyles";
-import { Grid, Button } from "@mui/material";
+import { Grid, Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import PageContainer from "../../components/PageContainer/PageContainer";
 import { useAuth } from "../../context/useAuthContext";
@@ -11,14 +11,9 @@ export default function Analytics() {
 
     return (
         <PageContainer>
-            <Grid container sx={{ height: '92vh'}}>
-                <Grid item xs={4} md={3}>
-                    <Sidebar />
-                </Grid>
-                <Grid item xs={8} md={9}>
-                    Cue Tracks Statistics
-                </Grid>
-            </Grid>
+            
+                    <Typography>Analytics</Typography>
+
         </PageContainer>
     );
 }

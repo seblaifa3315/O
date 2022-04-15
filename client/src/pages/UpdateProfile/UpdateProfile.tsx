@@ -6,6 +6,7 @@ import { useAuth } from "../../context/useAuthContext";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import updateProfile from "../../helpers/APICalls/updateProfile";
+import PageContainer from "../../components/PageContainer/PageContainer";
 
 export default function UpdateProfile() {
     const classes = useStyles();
@@ -35,13 +36,12 @@ export default function UpdateProfile() {
 
 
     return (
-        <Grid container sx={{ height: "92vh" }}>
-            <Grid item xs={4} md={3}>
-                <Sidebar />
-            </Grid>
+        <PageContainer>
+        <Grid container>
             <Grid item xs={8} md={9} className={classes.form}>
                 <UpdateProfileForm handleSubmit={handleSubmit} profile={profile} />
             </Grid>
         </Grid>
+        </PageContainer>
     );
 }

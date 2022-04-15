@@ -58,6 +58,7 @@ import format from "date-fns/format";
 import CakeIcon from "@mui/icons-material/Cake";
 import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
 import EmailIcon from "@mui/icons-material/Email";
+import PageContainer from "../../components/PageContainer/PageContainer";
 
 export default function DiverDetails() {
     const classes = useStyles();
@@ -132,12 +133,8 @@ export default function DiverDetails() {
         });
     };
 
-
     return (
-        <Grid container sx={{ height: "92vh" }}>
-            <Grid item xs={2} lg={1}>
-                <Sidebar />
-            </Grid>
+        <PageContainer>
             <Grid container item xs={10} lg={11} justifyContent="center" alignItems="center" sx={{ backgroundImage: `url(${Image})`, padding: "20px 0px", height: "100%", overflow: "scroll" }}>
                 <Grid item container spacing={3} sx={{ width: "90%" }}>
                     <Grid item xs={12} md={6} sx={{ maxHeight: "100%" }}>
@@ -395,6 +392,6 @@ export default function DiverDetails() {
                     </Grid>
                 </Grid>
             </Grid>
-        </Grid>
+        </PageContainer>
     );
 }

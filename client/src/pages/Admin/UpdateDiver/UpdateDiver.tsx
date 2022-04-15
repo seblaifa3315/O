@@ -9,6 +9,7 @@ import Sidebar from "../../../components/Sidebar/Sidebar";
 import { DiversApiData } from "../../../interface/DiversApiData";
 import getTheDiver from "../../../helpers/APICalls/getTheDiver";
 import updateDiver from "../../../helpers/APICalls/updateDiver";
+import PageContainer from "../../../components/PageContainer/PageContainer";
 
 export default function RegisterDiver() {
     const classes = useStyles();
@@ -66,15 +67,13 @@ export default function RegisterDiver() {
     };
 
     return (
-        <Grid container sx={{ height: "92vh" }}>
-            <Grid item xs={2} md={1}>
-                <Sidebar />
-            </Grid>
+        <PageContainer>
+
             <Grid container item xs={10} lg={11} sx={{ height: "100%", overflow: "scroll" }}>
                 <Box m={10}>
                     <UpdateDiverForm handleSubmit={handleSubmit} theDiver={theDiver} />
                 </Box>
             </Grid>
-        </Grid>
+        </PageContainer>
     );
 }

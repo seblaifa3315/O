@@ -69,10 +69,6 @@ export default function Divers() {
 
     return (
         <PageContainer>
-            <Grid container sx={{ height: "92vh" }}>
-                <Grid item xs={2} lg={1}>
-                    <Sidebar />
-                </Grid>
                 <Grid container item xs={10} lg={11} sx={{ height: "100%", overflow:'scroll' }}>
                     <Box sx={{ height: "100%", display: "flex", flexFlow: "column" }} textAlign="center">
                         <Box pt={2} pb={2}>
@@ -92,7 +88,6 @@ export default function Divers() {
                         </Box>
                     </Box>
                 </Grid>
-            </Grid>
         </PageContainer>
     );
 }
