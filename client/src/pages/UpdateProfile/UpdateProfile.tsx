@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import updateProfile from "../../helpers/APICalls/updateProfile";
 
-export default function RegisterDiver() {
+export default function UpdateProfile() {
     const classes = useStyles();
-    const { loggedInUser } = useAuth();
+    const { loggedInUser, profile } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = (
@@ -32,13 +32,15 @@ export default function RegisterDiver() {
         });
     };
 
+
+
     return (
         <Grid container sx={{ height: "92vh" }}>
             <Grid item xs={4} md={3}>
                 <Sidebar />
             </Grid>
             <Grid item xs={8} md={9} className={classes.form}>
-                <UpdateProfileForm handleSubmit={handleSubmit} />
+                <UpdateProfileForm handleSubmit={handleSubmit} profile={profile} />
             </Grid>
         </Grid>
     );

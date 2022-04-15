@@ -3,6 +3,7 @@ import useStyles from "./useStyles";
 import { useParams, useNavigate, NavLink } from "react-router-dom";
 import { DiversApiData } from "../../interface/DiversApiData";
 import getTheDiver from "../../helpers/APICalls/getTheDiver";
+import deleteDiver from "../../helpers/APICalls/deleteDiver";
 import {
     Box,
     Grid,
@@ -34,8 +35,12 @@ import {
     CardActions,
     Button,
     CardHeader,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
 } from "@mui/material";
-import PageContainer from "../../components/PageContainer/PageContainer";
 import { useAuth } from "../../context/useAuthContext";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import { LocationOn } from "@mui/icons-material";
@@ -60,6 +65,7 @@ export default function DiverDetails() {
     const { diverId } = useParams<{ diverId: string | undefined }>();
     const navigate = useNavigate();
     const { loggedInUser, profile } = useAuth();
+    const [openDialog, setOpenDialog] = useState(false);
 
     useEffect(() => {
         const loadTheDiver = async () => {
@@ -103,6 +109,29 @@ export default function DiverDetails() {
         createData("FL", 55, 10, "3/3/2015"),
         createData("D/S", 55, 10, "3/3/2015"),
     ];
+
+    const handleClickOpen = () => {
+        setOpenDialog(true);
+    };
+
+    const handleCloseDialog = () => {
+        setOpenDialog(false);
+    };
+
+    const handleDelete = () => {
+        deleteDiver(theDiver.userId).then((data) => {
+            if (data.error) {
+                console.error({ error: data.error.message });
+            } else if (data) {
+                handleCloseDialog();
+                navigate("/divers");
+            } else {
+                // should not get here from backend but this catch is for an unknown issue
+                console.error({ data });
+            }
+        });
+    };
+
 
     return (
         <Grid container sx={{ height: "92vh" }}>
@@ -221,7 +250,32 @@ export default function DiverDetails() {
                                     <NavLink to={`/update-diver/${diverId}`} className="link">
                                         <Button size="small">Edit</Button>
                                     </NavLink>
-                                    <Button size="small">Delete</Button>
+                                    {/* <Button size="small" onClick={handleDelete}>Delete</Button> */}
+                                    <Button size="small" onClick={handleClickOpen}>
+                                        Delete
+                                    </Button>
+                                    <Dialog open={openDialog} onClose={handleCloseDialog} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description" fullWidth maxWidth="sm">
+                                        <DialogTitle id="alert-dialog-title">{"Confirm Action"}</DialogTitle>
+                                        <DialogContent>
+                                            <DialogContentText id="alert-dialog-description">Are you sure you want to delete this diver?</DialogContentText>
+                                            <List dense>
+                                                <ListItem sx={{ padding: "0px" }}>
+                                                    <ListItemAvatar>
+                                                        <Avatar alt="Profile Image" src={theDiver.photo} sx={{ width: 40, height: 40 }} />
+                                                    </ListItemAvatar>
+                                                    <ListItemText primary={`${theDiver.firstName} ${theDiver.lastName}`} secondary={theDiver.status} />
+                                                </ListItem>
+                                            </List>
+                                        </DialogContent>
+                                        <DialogActions>
+                                            <Button variant="outlined" onClick={handleCloseDialog}>
+                                                Cancel
+                                            </Button>
+                                            <Button variant="contained" onClick={handleDelete} autoFocus>
+                                                Delete
+                                            </Button>
+                                        </DialogActions>
+                                    </Dialog>
                                 </CardActions>
                             )}
                         </Card>

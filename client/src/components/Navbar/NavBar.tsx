@@ -8,6 +8,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import IconButton from "@mui/material/IconButton";
 import PoolIcon from "@mui/icons-material/Pool";
 import { Settings, Logout } from "@mui/icons-material";
+import logoAlan from '../../images/logo/logoAlan.png';
 
 
 const Navbar: React.FC = () => {
@@ -37,10 +38,8 @@ const Navbar: React.FC = () => {
             <AppBar position="static" color={loggedInUser ? "primary" : "transparent"} elevation={0} sx={{ minHeight: "8vh" }}>
                 <Toolbar>
                     <NavLink to={loggedInUser? "/divers" : "/login"} className={classes.link}>
-                    <PoolIcon className={classes.logo} />
-                    <Typography sx={{ flexGrow: 1 }} variant="body1" className={classes.logo}>
-                        Aquatics
-                    </Typography>
+                    <img src={logoAlan} alt="logo" width="50" height="50" />
+
                     </NavLink>
                     
                     
