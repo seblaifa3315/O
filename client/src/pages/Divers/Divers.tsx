@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useStyles from "./useStyles";
 
-import { Grid, Button, Card, Typography, Box, Avatar, Stack, Paper, Divider } from "@mui/material";
+import { Grid, Button, Card, Typography, Box, Avatar, Stack, Paper, Divider, List, ListItem, ListItemButton, ListItemText, ListItemAvatar } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import PageContainer from "../../components/PageContainer/PageContainer";
 import { useAuth } from "../../context/useAuthContext";
@@ -15,6 +15,7 @@ interface Diver {
     status: string;
     avatar: string;
     diverId: string;
+    shift: string;
 }
 
 const DiverItem: React.FC<{
@@ -23,7 +24,8 @@ const DiverItem: React.FC<{
     lastName: string;
     status: string;
     diverId: string;
-}> = ({ avatar, firstName, lastName, status, diverId }) => {
+    shift: string;
+}> = ({ avatar, firstName, lastName, status, diverId, shift }) => {
     const classes = useStyles();
     const navigate = useNavigate();
 
@@ -32,17 +34,16 @@ const DiverItem: React.FC<{
     };
 
     return (
-        <Grid item xs={6} md={4} lg={2}>
-            <Stack pt={1} pb={1} alignItems="center" onClick={handleOnClick} sx={{ cursor: 'pointer'}}>
-                <Avatar src={avatar} alt={lastName} sx={{ height: 80, width: 80 }} />
-                <Typography>
-                    {firstName} {lastName}
-                </Typography>
-                <Typography variant="caption" sx={{ color: "#cacaca" }}>
-                    {status}
-                </Typography>
-            </Stack>
-        </Grid>
+        <ListItem key={diverId}>
+            <ListItemButton onClick={handleOnClick}>
+                <ListItemAvatar>
+                    <Avatar alt={`${firstName} picture`} src={avatar} />
+                </ListItemAvatar>
+                <ListItemText id={lastName} primary={`${firstName} ${lastName}`} />
+                <ListItemText id={status} primary={`${status}`} />
+                <ListItemText id={shift} primary={`${shift}`} />
+            </ListItemButton>
+        </ListItem>
     );
 };
 
@@ -65,29 +66,66 @@ export default function Divers() {
         };
         loadDivers();
     }, []);
-
+    console.log(divers)
 
     return (
         <PageContainer>
-                <Grid container item xs={10} lg={11} sx={{ height: "100%", overflow:'scroll' }}>
-                    <Box sx={{ height: "100%", display: "flex", flexFlow: "column" }} textAlign="center">
-                        <Box pt={2} pb={2}>
-                            <Typography variant="h3">Aquatics Team</Typography>
-                        </Box>
-                        <Box sx={{ flexGrow: "1" }}>
-                        
-                            <Grid container justifyContent="center">
-                                {divers && divers.filter((diver) => diver.status === "supervisor").map((diver) => <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} diverId={diver.userId} />)}
-                            </Grid>
-                            
-                            <Grid container justifyContent="center">
-                                {divers && divers.filter((diver) => diver.status === "lead").map((diver) => <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} diverId={diver.userId} />)}
-                            </Grid>
-                            
-                            <Grid container>{divers && divers.filter((diver) => diver.status === "technician").map((diver) => <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} diverId={diver.userId} />)}</Grid>
-                        </Box>
-                    </Box>
-                </Grid>
+            <Box pt={3} pl={20} pr={20} sx={{ height: "100%", maxHeight: "100%" }}>
+                <Stack spacing={1}>
+                    <Typography variant="h4" gutterBottom>Aquatic Team</Typography>
+                    <Paper elevation={4}>
+                        <List dense>
+                            {divers &&
+                                divers
+                                    .filter((diver) => diver.status === "supervisor")
+                                    .map((diver) => (
+                                        <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} diverId={diver.userId} shift={diver.shift} />
+                                    ))}
+                        </List>
+                    </Paper>
+                    <Paper elevation={4}>
+                        <List dense>
+                            {divers &&
+                                divers
+                                    .filter((diver) => diver.status === "lead")
+                                    .map((diver) => (
+                                        <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} diverId={diver.userId} shift={diver.shift} />
+                                    ))}
+                        </List>
+                    </Paper>
+                    <Paper elevation={4} sx={{ overflow: "scroll", flexGrow: "1" }}>
+                        <List dense>
+                            {divers &&
+                                divers
+                                    .filter((diver) => diver.status === "technician")
+                                    .map((diver) => (
+                                       
+                                            <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} diverId={diver.userId} shift={diver.shift} />
+                                       
+                                    ))}
+                        </List>
+                    </Paper>
+                </Stack>
+            </Box>
         </PageContainer>
+        //     <Grid container item xs={10} lg={11} sx={{ height: "100%", overflow:'scroll' }}>
+        //     <Box sx={{ height: "100%", display: "flex", flexFlow: "column" }} textAlign="center">
+        //         <Box pt={2} pb={2}>
+        //             <Typography variant="h3">Aquatics Team</Typography>
+        //         </Box>
+        //         <Box sx={{ flexGrow: "1" }}>
+
+        //             <Grid container justifyContent="center">
+        //                 {divers && divers.filter((diver) => diver.status === "supervisor").map((diver) => <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} diverId={diver.userId} />)}
+        //             </Grid>
+
+        //             <Grid container justifyContent="center">
+        //                 {divers && divers.filter((diver) => diver.status === "lead").map((diver) => <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} diverId={diver.userId} />)}
+        //             </Grid>
+
+        //             <Grid container>{divers && divers.filter((diver) => diver.status === "technician").map((diver) => <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} diverId={diver.userId} />)}</Grid>
+        //         </Box>
+        //     </Box>
+        // </Grid>
     );
 }
