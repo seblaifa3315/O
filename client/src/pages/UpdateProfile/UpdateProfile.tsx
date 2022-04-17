@@ -1,5 +1,5 @@
 import { FormikHelpers } from "formik";
-import { Grid } from "@mui/material";
+import { Grid, Box, Paper } from "@mui/material";
 import UpdateProfileForm from "./UpdateProfileForm/UpdateProfileForm";
 import useStyles from "./useStyles";
 import { useAuth } from "../../context/useAuthContext";
@@ -22,9 +22,7 @@ export default function UpdateProfile() {
                 console.error({ error: data.error.message });
                 setSubmitting(false);
             } else if (data) {
-                loggedInUser &&
-                navigate(`/diver-details/${loggedInUser.id}`);
-                
+                loggedInUser && navigate(`/diver-details/${loggedInUser.id}`);
             } else {
                 // should not get here from backend but this catch is for an unknown issue
                 console.error({ data });
@@ -33,15 +31,13 @@ export default function UpdateProfile() {
         });
     };
 
-
-
     return (
         <PageContainer>
-        <Grid container>
-            <Grid item xs={8} md={9} className={classes.form}>
-                <UpdateProfileForm handleSubmit={handleSubmit} profile={profile} />
-            </Grid>
-        </Grid>
+            <Box display="flex" justifyContent="center" alignItems="center" sx={{ height: "100%" }}>
+                <Paper elevation={4} sx={{ opacity: 0.95, width: "90%", maxWidth: "600px", padding: "5% 5%" }}>
+                    <UpdateProfileForm handleSubmit={handleSubmit} profile={profile} />
+                </Paper>
+            </Box>
         </PageContainer>
     );
 }

@@ -132,7 +132,7 @@ export default function DiverDetails() {
 
     return (
         <PageContainer>
-            <Box display="flex" justifyContent="center" alignItems="center" sx={{ height: "100%" }}>
+            <Box display="flex" justifyContent="center" alignItems="center" pt={3}>
                 <Grid item container spacing={3} sx={{ width: "90%" }}>
                     <Grid item xs={12} md={6} sx={{ maxHeight: "100%" }}>
                         <Card elevation={5} sx={{ opacity: 0.95, height: "100%" }}>
