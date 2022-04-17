@@ -2,7 +2,13 @@ import { makeStyles } from "@mui/styles";
 import { Theme } from '@mui/material';
 
 const useStyles = makeStyles((theme: Theme) => ({
-
+    logo: {
+        cursor: 'pointer',
+        width:'90%',
+        color: '#ededed' ,
+        borderRadius: 5,
+        padding: "10px 0px",
+    },
     item: {
         width:'90%',
         color: '#ededed' ,

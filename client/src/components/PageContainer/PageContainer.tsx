@@ -12,14 +12,16 @@ const PageContainer: React.FC<PageContainerProps> = ({ children }) => {
         <Box
             sx={{
                 width: "100%",
-                height: "92vh",
+                position: 'absolute',
+                top: 0,
+                left: 0,
             }}
         >
             <Grid container>
                 <Grid item xs={2} md={1}>
                     <Sidebar />
                 </Grid>
-                <Grid item xs={10} md={11} sx={{ backgroundImage: `url(${Image})`}}>
+                <Grid item xs={10} md={11} sx={{ backgroundImage: `url(${Image})`,maxHeight: '100vh', overflow: 'scroll', paddingTop: '6vh'}}>
                     {children}
                 </Grid>
             </Grid>

@@ -6,12 +6,19 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context/useAuthContext";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import GroupsIcon from "@mui/icons-material/Groups";
+import logoAlan from "../../images/logo/logoAlan.png";
 
 export default function Sidebar() {
     const classes = useStyles();
     const { loggedInUser, profile } = useAuth();
     return (
-        <Stack alignItems="center" pt={5} spacing={5} sx={{ bgcolor: "rgb(34, 39, 71)", height: '92vh' }}>
+        <Stack alignItems="center" pt={3} spacing={5} sx={{ bgcolor: "rgb(34, 39, 71)", height: "100vh" }}>
+            <NavLink to={loggedInUser ? "/divers" : "/login"} className={`link ${classes.logo}`}>
+                <Stack alignItems="center" justifyContent="center" alignContent="center">
+                    <img src={logoAlan} alt="logo" width="50" height="50" />
+                </Stack>
+            </NavLink>
+
             <NavLink to="/divers" className={`link ${classes.item}`}>
                 <Stack alignItems="center" justifyContent="center" alignContent="center">
                     <GroupsIcon fontSize="large" />

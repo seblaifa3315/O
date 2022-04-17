@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, NavLink } from "react-router-dom";
 import { FormikHelpers } from "formik";
-import { Grid, Box, CircularProgress } from "@mui/material";
+import { Grid, Box, CircularProgress, Paper } from "@mui/material";
 import UpdateDiverForm from "./UpdateDiverForm/UpdateDiverForm";
 import useStyles from "./useStyles";
 import { useAuth } from "../../../context/useAuthContext";
@@ -17,7 +17,6 @@ export default function RegisterDiver() {
     const navigate = useNavigate();
     const [theDiver, setTheDiver] = useState<DiversApiData>();
     const { diverId } = useParams<{ diverId: string | undefined }>();
-    
 
     useEffect(() => {
         const loadTheDiver = async () => {
@@ -34,8 +33,6 @@ export default function RegisterDiver() {
         loadTheDiver();
     }, [diverId]);
 
-    
-
     if (theDiver === undefined) {
         return <CircularProgress />;
     }
@@ -48,8 +45,19 @@ export default function RegisterDiver() {
     }
 
     const handleSubmit = (
-        { firstName, lastName, status, shift, hiringDate, isAdmin, tracks, divingCert, gearCert, medicalCert, otherCert
-        }: { firstName: string; lastName: string; status: string; shift: string; hiringDate: Date; isAdmin: boolean; tracks: String[]; divingCert: String[]; gearCert: String[]; medicalCert: String[]; otherCert: String[]},
+        {
+            firstName,
+            lastName,
+            status,
+            shift,
+            hiringDate,
+            isAdmin,
+            tracks,
+            divingCert,
+            gearCert,
+            medicalCert,
+            otherCert,
+        }: { firstName: string; lastName: string; status: string; shift: string; hiringDate: Date; isAdmin: boolean; tracks: String[]; divingCert: String[]; gearCert: String[]; medicalCert: String[]; otherCert: String[] },
         { setSubmitting }: FormikHelpers<{ firstName: string; lastName: string; status: string; shift: string; hiringDate: Date; isAdmin: boolean; tracks: String[]; divingCert: String[]; gearCert: String[]; medicalCert: String[]; otherCert: String[] }>
     ) => {
         updateDiver(firstName, lastName, status, shift, hiringDate, isAdmin, tracks, divingCert, gearCert, medicalCert, otherCert, theDiver.userId).then((data) => {
@@ -68,12 +76,11 @@ export default function RegisterDiver() {
 
     return (
         <PageContainer>
-
-            <Grid container item xs={10} lg={11} sx={{ height: "100%", overflow: "scroll" }}>
-                <Box m={10}>
+            <Box display="flex" justifyContent="center" alignItems="center" sx={{padding:'30px 0' }}>
+                <Paper elevation={4} sx={{ opacity: 0.95, width: "90%", padding: "5% 5%" }}>
                     <UpdateDiverForm handleSubmit={handleSubmit} theDiver={theDiver} />
-                </Box>
-            </Grid>
+                </Paper>
+            </Box>
         </PageContainer>
     );
 }

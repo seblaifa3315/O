@@ -34,15 +34,8 @@ const Navbar: React.FC = () => {
 
 
     return (
-        <Box className={location.pathname === "/login" ? classes.transparentNavbar : classes.navbarContainer}>
-            <AppBar position="static" color={loggedInUser ? "primary" : "transparent"} elevation={0} sx={{ minHeight: "8vh" }}>
-                <Toolbar>
-                    <NavLink to={loggedInUser? "/divers" : "/login"} className={classes.link}>
-                    <img src={logoAlan} alt="logo" width="50" height="50" />
-
-                    </NavLink>
-                    
-                    
+            <AppBar position="static" color="transparent" elevation={0} sx={{ position: 'absolute', zIndex: 100}}>
+                <Toolbar sx={{display:'flex', justifyContent:'end'}}>                   
                     {(loggedInUser && profile) && (
                         <>
                             <Typography>Welcome {loggedInUser.firstName}</Typography>
@@ -83,7 +76,6 @@ const Navbar: React.FC = () => {
                     )}
                 </Toolbar>
             </AppBar>
-        </Box>
     );
 };
 
