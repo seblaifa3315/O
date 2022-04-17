@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Grid } from "@mui/material";
 import Sidebar from "../Sidebar/Sidebar";
+import Image from "../../images/background/drop.png";
 
 interface PageContainerProps {
     children: JSX.Element;
@@ -18,7 +19,7 @@ const PageContainer: React.FC<PageContainerProps> = ({ children }) => {
                 <Grid item xs={2} md={1}>
                     <Sidebar />
                 </Grid>
-                <Grid item xs={10} md={11}>
+                <Grid item xs={10} md={11} sx={{ backgroundImage: `url(${Image})`}}>
                     {children}
                 </Grid>
             </Grid>
