@@ -21,7 +21,7 @@ const PageContainer: React.FC<PageContainerProps> = ({ children }) => {
                 <Grid item xs={2} md={1}>
                     <Sidebar />
                 </Grid>
-                <Grid item xs={10} md={11} sx={{ backgroundImage: `url(${Image})`,maxHeight: '100vh', overflow: 'scroll', paddingTop: '6vh'}}>
+                <Grid item xs={10} md={11} sx={{ backgroundImage: `url(${Image})`, paddingTop: '8vh'}}>
                     {children}
                 </Grid>
             </Grid>

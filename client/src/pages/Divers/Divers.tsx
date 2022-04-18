@@ -80,7 +80,8 @@ export default function Divers() {
 
     return (
         <PageContainer>
-            <Box pb={2} pl='5%' pr='5%'>
+            
+            <Box  mt={2} mb={2} pl='5%' pr='5%'>
 
                     <Stack direction="row" spacing={3}>
                         <Typography variant="h4" gutterBottom>
@@ -92,7 +93,7 @@ export default function Divers() {
                             </NavLink>
                         )}
                     </Stack>
-
+                    <Box sx={{ maxHeight: '75vh', overflow: 'scroll'}}>
                     <Stack spacing={1}>
                             <Paper elevation={4} sx={{ opacity: 0.95}}>
                                 <List dense>{divers && divers.filter((diver) => diver.status === "supervisor").map((diver) => <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} diverId={diver.userId} shift={diver.shift} />)}</List>
@@ -100,10 +101,11 @@ export default function Divers() {
                             <Paper elevation={4} sx={{opacity: 0.95}}>
                                 <List dense>{divers && divers.filter((diver) => diver.status === "lead").map((diver) => <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} diverId={diver.userId} shift={diver.shift} />)}</List>
                             </Paper>
-                            <Paper elevation={4} sx={{ opacity: 0.95}}>
+                            <Paper elevation={4} sx={{ opacity: 0.95 }}>
                                 <List dense>{divers && divers.filter((diver) => diver.status === "technician").map((diver) => <DiverItem key={diver.lastName} avatar={diver.photo} firstName={diver.firstName} lastName={diver.lastName} status={diver.status} diverId={diver.userId} shift={diver.shift} />)}</List>
                             </Paper>
                     </Stack>
+            </Box>
             </Box>
         </PageContainer>
     );
