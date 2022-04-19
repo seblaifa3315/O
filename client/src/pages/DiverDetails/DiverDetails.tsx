@@ -46,32 +46,10 @@ export default function DiverDetails() {
         return <CircularProgress />;
     }
 
-    // const handleClickOpen = () => {
-    //     setOpenDialog(true);
-    // };
-
-    // const handleCloseDialog = () => {
-    //     setOpenDialog(false);
-    // };
-
-    // const handleDelete = () => {
-    //     deleteDiver(theDiver.userId).then((data) => {
-    //         if (data.error) {
-    //             console.error({ error: data.error.message });
-    //         } else if (data) {
-    //             handleCloseDialog();
-    //             navigate("/divers");
-    //         } else {
-    //             // should not get here from backend but this catch is for an unknown issue
-    //             console.error({ data });
-    //         }
-    //     });
-    // };
-
     return (
         <PageContainer>
-            <Box sx={{overflow: 'scroll'}}>
-                <Grid item container spacing={3}>
+            <Box sx={{ maxHeight: "92vh", overflow: "scroll", display: 'flex', justifyContent:'center', bgcolor: 'red'}}>
+                <Grid container spacing={2} pt={1} pl={1}   sx={{width: '90%' }}>
                     <Grid item xs={12} md={6}>
                         <DiverAdminInfo theDiver={theDiver} />
                     </Grid>

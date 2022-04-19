@@ -31,10 +31,10 @@ export default function DiverPersoInfo({ theDiver }: Props): JSX.Element {
     }
 
     return (
-        <Card elevation={5} sx={{ flexGrow: 1, opacity: 0.92 }}>
+        <Card elevation={5} sx={{ opacity: 0.92 }}>
             <CardHeader title="About Me" />
             <CardContent>
-                <List disablePadding sx={{ flexGrow: 1 }}>
+                <List disablePadding>
                     <ListItem sx={{ padding: "0px 0px 5px 0px" }}>
                         <Stack direction="row" spacing={1}>
                             <LocationOn fontSize="small" sx={{ color: "#aaaaaa" }} />

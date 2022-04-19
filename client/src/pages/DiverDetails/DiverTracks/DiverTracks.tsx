@@ -1,64 +1,24 @@
 import useStyles from "./useStyles";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { DiversApiData } from "../../../interface/DiversApiData";
-import {
-    Box,
-    Grid,
-    Typography,
-    Paper,
-    Card,
-    CardMedia,
-    CardContent,
-    Avatar,
-    Rating,
-    CircularProgress,
-    Divider,
-    Stack,
-    Checkbox,
-    FormGroup,
-    FormControlLabel,
-    TableContainer,
-    Table,
-    TableHead,
-    TableRow,
-    TableCell,
-    TableBody,
-    List,
-    ListItem,
-    ListItemText,
-    ListItemAvatar,
-    Chip,
-    FormLabel,
-    CardActions,
-    Button,
-    CardHeader,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-} from "@mui/material";
+import { Box, Typography, Card, CardContent, CircularProgress, Stack, Checkbox, FormControlLabel, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, CardHeader } from "@mui/material";
 import { useAuth } from "../../../context/useAuthContext";
-import { LocationOn } from "@mui/icons-material";
-import CakeIcon from "@mui/icons-material/Cake";
-import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
-import EmailIcon from "@mui/icons-material/Email";
 
 function createData(track: string, amount: number, ratio: number, last: string) {
-  return { track, amount, ratio, last };
+    return { track, amount, ratio, last };
 }
 
 const rows = [
-  createData("Console", 55, 10, "3/3/2015"),
-  createData("R1", 55, 10, "3/3/2015"),
-  createData("R2", 55, 10, "3/3/2015"),
-  createData("CR", 55, 10, "3/3/2015"),
-  createData("L1", 55, 10, "3/3/2015"),
-  createData("L2", 55, 10, "3/3/2015"),
-  createData("CL", 55, 10, "3/3/2015"),
-  createData("FR", 55, 10, "3/3/2015"),
-  createData("FL", 55, 10, "3/3/2015"),
-  createData("D/S", 55, 10, "3/3/2015"),
+    createData("C", 55, 10, "3/3/2015"),
+    createData("R1", 55, 10, "3/3/2015"),
+    createData("R2", 55, 10, "3/3/2015"),
+    createData("CR", 55, 10, "3/3/2015"),
+    createData("L1", 55, 10, "3/3/2015"),
+    createData("L2", 55, 10, "3/3/2015"),
+    createData("CL", 55, 10, "3/3/2015"),
+    createData("FR", 55, 10, "3/3/2015"),
+    createData("FL", 55, 10, "3/3/2015"),
+    createData("D/S", 55, 10, "3/3/2015"),
 ];
 
 interface Props {
@@ -82,7 +42,7 @@ export default function DiverTracks({ theDiver }: Props): JSX.Element {
     }
 
     return (
-        <Card elevation={5} sx={{ flexGrow: 1, opacity: 0.92 }}>
+        <Card elevation={5} sx={{ opacity: 0.92 }}>
             <CardHeader title="My Tracks" />
             <CardContent>
                 <TableContainer component={Box} sx={{ overflow: "hidden" }}>
