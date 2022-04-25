@@ -33,8 +33,8 @@ export default function UpdateProfile() {
 
     return (
         <PageContainer>
-            <Box display="flex" justifyContent="center" alignItems="center" sx={{ height: "100%" }}>
-                <Paper elevation={4} sx={{ opacity: 0.95, width: "90%", maxWidth: "600px", padding: "5% 5%" }}>
+            <Box display='flex' alignItems='center' justifyContent= 'center'>
+            <Paper elevation={2} sx={{ opacity: 0.95, width: "90%", maxWidth: "600px", padding: "5% 5%" }}>
                     <UpdateProfileForm handleSubmit={handleSubmit} profile={profile} />
                 </Paper>
             </Box>

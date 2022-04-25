@@ -3,21 +3,23 @@ import { Theme } from '@mui/material';
 
 const useStyles = makeStyles((theme: Theme) => ({
   transparentNavbar: {
-    position: 'absolute',
-    zIndex: 100,
-    width: '100vw',
+    // position: 'absolute',
+    // zIndex: 100,
+    // width: '100vw',
+
   },
   navbarContainer: {
-    width: '100vw',
+    // width: '100vw',
+
   },
-  logo: {
-    fontWeight: 700,
-    marginRight: '5px',
-    [theme.breakpoints.down('md')]:
-    {
-      color: '#FFF',
-    }
-  },
+  // logo: {
+  //   fontWeight: 700,
+  //   marginRight: '5px',
+  //   [theme.breakpoints.down('md')]:
+  //   {
+  //     color: '#FFF',
+  //   }
+  // },
   link: {
     display: 'flex',
     flexGrow: 1,

@@ -24,7 +24,7 @@ function App(): JSX.Element {
             <BrowserRouter>
                 <AuthProvider>
                     <CssBaseline />
-                    <Navbar />
+                    {/* <Navbar /> */}
                     <Routes>
                         <Route path="/login" element={<Login />} />
                         <Route element={<ProtectedRoute />}>

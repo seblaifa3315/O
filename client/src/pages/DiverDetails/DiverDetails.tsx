@@ -48,13 +48,13 @@ export default function DiverDetails() {
 
     return (
         <PageContainer>
-            <Box sx={{ maxHeight: "92vh", overflow: "scroll", display: 'flex', justifyContent:'center', bgcolor: 'red'}}>
-                <Grid container spacing={2} pt={1} pl={1}   sx={{width: '90%' }}>
+            <Box sx={{ width: "95%", height: "95%" }}>
+                <Grid container spacing={{ xs: 2, md: 3 }}>
                     <Grid item xs={12} md={6}>
                         <DiverAdminInfo theDiver={theDiver} />
                     </Grid>
-                    <Grid container item xs={12} md={6}>
-                        <Stack spacing={2}>
+                    <Grid item xs={12} md={6}>
+                        <Stack spacing={{ xs: 2, md: 3 }}>
                             <DiverTracks theDiver={theDiver} />
                             <DiverPersoInfo theDiver={theDiver} />
                         </Stack>

@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
 
 
     return (
-            <AppBar position="static" color="transparent" elevation={0} sx={{ position: 'absolute', zIndex: 100}}>
+            <AppBar position="static" color="transparent" elevation={0} >
                 <Toolbar sx={{display:'flex', justifyContent:'end'}}>                   
                     {(loggedInUser && profile) && (
                         <>

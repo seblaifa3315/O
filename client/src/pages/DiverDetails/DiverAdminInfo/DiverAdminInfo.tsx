@@ -189,7 +189,6 @@ if (!theDiver) {
                                     <NavLink to={`/update-diver/${theDiver.userId}`} className="link">
                                         <Button size="small">Edit</Button>
                                     </NavLink>
-                                    {/* <Button size="small" onClick={handleDelete}>Delete</Button> */}
                                     <Button size="small" onClick={handleClickOpen}>
                                         Delete
                                     </Button>

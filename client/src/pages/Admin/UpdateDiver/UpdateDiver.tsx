@@ -76,8 +76,8 @@ export default function RegisterDiver() {
 
     return (
         <PageContainer>
-            <Box pb={1} sx={{maxHeight: '92vh', display: 'flex', justifyContent:'center'}}>
-                <Paper elevation={4} sx={{ opacity: 0.95, width: "90%", padding: "3% 5%", maxHeight: '92vh', overflow: "scroll" }}>
+            <Box pt={2} pb={2} sx={{ width: '95%', height: '95%', overflowY:'scroll'}}>
+                <Paper elevation={2} sx={{ opacity: 0.95, padding: 5 }}>
                     <UpdateDiverForm handleSubmit={handleSubmit} theDiver={theDiver} />
                 </Paper>
             </Box>
